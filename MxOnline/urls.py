@@ -24,4 +24,8 @@ urlpatterns = [
     url('^login/$', views.LoginView.as_view(), name='login'),
     url('^register/$', views.RegisterView.as_view(), name='register'),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^active/(?P<active_code>.*)/$', views.ActiveUser.as_view(), name='user_active'),
+    url(r'^reset/(?P<reset_code>.*)/$', views.ResetUser.as_view(), name='reset'),
+    url(r'^forget/$', views.ForGetView.as_view(), name='forget'),
+    url(r'^changepwd/$', views.changepwd.as_view(), name='changepwd'),
 ]

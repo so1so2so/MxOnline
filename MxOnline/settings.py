@@ -140,3 +140,18 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+EMAIL_HOST = "smtp.sina.cn"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '18784872501@sina.cn'
+EMAIL_HOST_PASSWORD = '125800'
+EMAIL_USE_TLS = False
+EMAIL_FROM ='18784872501@sina.cn'
+
+# EMAIL_HOST = 'smtp.qq.com'
+# EMAIL_HOST_USER = '1037930435@qq.com'
+# EMAIL_HOST_PASSWORD = 'qhpmwoxgmqovbbac'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_FROM ='18784872501@sina.cn'
+
+
