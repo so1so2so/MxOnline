@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'captcha',
+    'pure_pagination',
 ]
 AUTH_USER_MODEL = 'users.UserProfile'
 MIDDLEWARE_CLASSES = [
@@ -72,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.media',
             ],
         },
     },
@@ -153,5 +155,6 @@ EMAIL_FROM ='18784872501@sina.cn'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 # EMAIL_FROM ='18784872501@sina.cn'
-
+MEDIA_URL='/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 

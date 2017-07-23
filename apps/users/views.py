@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import make_password
 # Create your views here.
 from myemail.email_send import mysend_email
 
+
 class LoginView(View):
     def get(self, request):
         return render(request, 'login.html')
@@ -129,7 +130,8 @@ class changepwd(View):
         return render(request, "password_reset.html",{'change_pwd_form':change_pwd_form})
 
 
-
+def test_view(request):
+    return render(request,'org-list.html')
 
 
 
