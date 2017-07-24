@@ -51,14 +51,14 @@
                 {% for course in all_orgs.object_list %}
                  <dl class="des difdes">
                     <dt>
-                        <a href="org-detail-homepage.html">
+                        <a href="{% url 'org:org_home' course.id %}">
 {#                            图片链接#}
                             <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ course.image }}"/>
                         </a>
                     </dt>
                     <dd>
                         <div class="clearfix">
-                             <a href="org-detail-homepage.html">
+                             <a href="{% url 'org:org_home' course.id %}">
 {#                                 学校名称#}
                                  <h1>{{ course.name }}</h1>
                                  <div class="pic fl">
@@ -114,6 +114,7 @@
 	<div class="right companyright">
 			<div class="head">我要学习</div>
 			<form class="rightform" id="jsStayForm">
+                  {% csrf_token %}
 				<div>
                     <img src="/static/images/rightform1.png"/>
                     <input type="text" name="name" id="companyName" placeholder="名字" maxlength="25" />
@@ -128,7 +129,7 @@
                 </div>
                 <p class="error company-tips" id="jsCompanyTips"></p>
 				<input class="btn" type="text" id="jsStayBtn" value="立即咨询 >" />
-            <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+
             </form>
 		</div>
 
@@ -147,4 +148,32 @@
 		</div>
         </div>
 </section>
+{% endblock %}
+{% block custom_js %}
+<script>
+    $(function(){
+        $('#jsStayBtn').on('click', function(){
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url:"{% url "org:add" %}",
+                data:$('#jsStayForm').serialize(),
+                async: true,
+{#                headers:{ 'X-CSRFtoken':csrf},#}
+                dataType:'JSON',
+                success: function(data) {
+                    console.log(data);
+{#                    var obj = JSON.parse(data);#}
+                    if(data.status == 'success'){
+                       location.reload();
+                        alert("提交成功")
+                    }else if(data.status == 'fail'){
+                         console.log(data.status);
+                        $('#jsCompanyTips').html(data.msg)
+                    }
+                },
+            });
+        });
+    })
+</script>
 {% endblock %}
