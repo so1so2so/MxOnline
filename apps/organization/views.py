@@ -79,12 +79,63 @@ class OrgHomeView(View):
     机构首页
     """
     def get(self,request,org_id):
+        current = 'home'
         course_org = CourseOrg.objects.get(id=int(org_id))
         # 反向调用
-        all_courses = course_org.course_set.all()[:3]
+        all_courses = course_org.course_set.all()[:4]
         print all_courses
-        all_teacher = course_org.teacher_set.all()[:1]
+        all_teacher = course_org.teacher_set.all()[:2]
+
         return render(request,'org-detail-homepage.html',{
             'all_courses':all_courses,
-            'all_teacher':all_teacher
+            'all_teacher':all_teacher,
+            'course_org':course_org,
+            'current':current,
+        })
+class TestView(View):
+    def get(self,requesr):
+        return render(requesr,'org_base.html',{"msg":'faule'})
+class OrgCourseView(View):
+    """
+    机构课程列表页
+    """
+    def get(self,request,org_id):
+        current = 'course'
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 反向调用
+        all_courses = course_org.course_set.all()
+
+        return render(request,'org-detail-course.html',{
+            'all_courses':all_courses,
+            'course_org':course_org,
+            'current':current,
+        })
+class OrgDescView(View):
+    """
+    机构课程列表页
+    """
+    def get(self,request,org_id):
+        current = 'desc'
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 反向调用
+        all_courses = course_org.course_set.all()
+
+        return render(request,'org-detail-desc.html',{
+            'all_courses':all_courses,
+            'course_org':course_org,
+            'current':current,
+        })
+class OrgTeachersView(View):
+    """
+    机构课程列表页
+    """
+    def get(self,request,org_id):
+        current = 'teachers'
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        # 反向调用
+        all_teacher = course_org.teacher_set.all()[:2]
+        return render(request,'org-detail-teachers.html',{
+            'all_teacher':all_teacher,
+            'course_org':course_org,
+            'current':current,
         })

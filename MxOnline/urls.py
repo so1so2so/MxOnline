@@ -18,19 +18,19 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.views.generic import TemplateView
 import xadmin
-from users import views
+from users.views import LoginView,RegisterView,ActiveUser,ResetUser,ForGetView,changepwd
 from organization import urls
 from django.views.static import serve
 from MxOnline.settings import MEDIA_ROOT
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
-    url('^login/$', views.LoginView.as_view(), name='login'),
-    url('^register/$', views.RegisterView.as_view(), name='register'),
-    url(r'^active/(?P<active_code>.*)/$', views.ActiveUser.as_view(), name='user_active'),
-    url(r'^reset/(?P<reset_code>.*)/$', views.ResetUser.as_view(), name='reset'),
-    url(r'^forget/$', views.ForGetView.as_view(), name='forget'),
-    url(r'^changepwd/$', views.changepwd.as_view(), name='changepwd'),
+    url('^login/$', LoginView.as_view(), name='login'),
+    url('^register/$', RegisterView.as_view(), name='register'),
+    url(r'^active/(?P<active_code>.*)/$', ActiveUser.as_view(), name='user_active'),
+    url(r'^reset/(?P<reset_code>.*)/$', ResetUser.as_view(), name='reset'),
+    url(r'^forget/$', ForGetView.as_view(), name='forget'),
+    url(r'^changepwd/$', changepwd.as_view(), name='changepwd'),
     # url(r'^org-list.html/$', orgview.OrgView.as_view(), name='org_list'),
     # 配置上传文件的访问处理函数
     url(r'^media/(?P<path>.*)$',  serve, {"document_root": MEDIA_ROOT}),
