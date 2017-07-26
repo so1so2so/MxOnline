@@ -87,28 +87,28 @@
                 {% endfor %}
 
 		</div>
-		 <div class="pageturn">
-            <ul class="pagelist">
-                {% if all_orgs.has_previous %}
-                    <li class="long"><a href="?{{ all_orgs.previous_page_number.querystring }}">上一页</a></li>
-            {% endif %}
-            {% for page in all_orgs.pages %}
-                {% if page %}
-                    {% ifequal page all_orgs.number %}
-                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+            <div class="pageturn">
+                <ul class="pagelist">
+                    {% if all_orgs.has_previous %}
+                        <li class="long"><a href="?{{ all_orgs.previous_page_number.querystring }}">上一页</a></li>
+                    {% endif %}
+                    {% for page in all_orgs.pages %}
+                        {% if page %}
+                            {% ifequal page all_orgs.number %}
+                                <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                            {% else %}
+                                <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                            {% endifequal %}
+                        {% else %}
+                            <li class="none"><a href="">...</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if all_orgs.has_next %}
+                        <li class="long"><a href="?{{ all_orgs.next_page_number.querystring }}">下一页</a></li>
                     {% else %}
-                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
-                    {% endifequal %}
-                {% else %}
-                    <li class="none"><a href="">...</a></li>
-                {% endif %}
-            {% endfor %}
-            {% if all_orgs.has_next %}
-                <li class="long"><a href="?{{ all_orgs.next_page_number.querystring }}">下一页</a></li>
-            {% else %}
-            {% endif %}
-            </ul>
-        </div>
+                    {% endif %}
+                </ul>
+            </div>
 		</div>
 	</div>
 	<div class="right companyright">

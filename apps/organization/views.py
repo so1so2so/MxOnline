@@ -4,7 +4,9 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.shortcuts import render_to_response
 from forms import AnotherUserAskForm
+# 分页函数
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+
 from models import *
 from operation.models import UserFavorite
 from courses import *
