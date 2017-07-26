@@ -83,9 +83,7 @@ class OrgHomeView(View):
         course_org = CourseOrg.objects.get(id=int(org_id))
         # 反向调用
         all_courses = course_org.course_set.all()[:4]
-        print all_courses
         all_teacher = course_org.teacher_set.all()[:2]
-
         return render(request,'org-detail-homepage.html',{
             'all_courses':all_courses,
             'all_teacher':all_teacher,
