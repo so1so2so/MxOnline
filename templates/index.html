@@ -25,7 +25,7 @@
                                 {% if request.user.is_authenticated %}
                                     <div class="personal">
                             <dl class="user fr">
-                                <dd>bobby<img class="down fr" src="/static/images/top_down.png"/></dd>
+                                <dd><img class="down fr" src="/static/images/top_down.png"/></dd>
                                 <dt><img width="20" height="20" src="/static/media/image/2016/12/default_big_14.png"/></dt>
                             </dl>
                             <div class="userdetail">
@@ -43,19 +43,16 @@
                             </div>
                         </div>
                                     {% else %}
-                                    <a style="color:white" class="fr registerbtn" href="/register">注册</a>
-                                    <a style="color:white" class="fr loginbtn" href="/login/">登录</a>
+                                    <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                                    <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
                                     {% endif %}
-
-{#
-
 
 				</div>
 			</div>
 
             <div class="middle">
                 <div class="wp">
-                    <a href="index.html"><img class="fl" src="/static/images/logo.jpg"/></a>
+                    <a href="{% url 'index' %}"><img class="fl" src="/static/images/logo.jpg"/></a>
                     <div class="searchbox fr">
                         <div class="selectContainer fl">
                             <span class="selectOption" id="jsSelectOption" data-value="course">
@@ -78,7 +75,7 @@
 				<div class="nav">
 					<div class="wp">
 						<ul>
-							<li class="active" ><a href="index.html">首页</a></li>
+							<li class="active" ><a href="{% url 'index' %}">首页</a></li>
 							<li >
 								<a href="course-list.html">
 									公开课<img class="hot" src="/static/images/nav_hot.png">
@@ -549,7 +546,7 @@
 				<ul class="cont">
 					<li class="logo"><a href=""><img src="/static/images/footlogo.png"/></a></li>
 					<li class="code"><img src="/static/images/code.jpg"/><p class="center">扫描关注微信</p></li>
-					<li class="third"><img class="fl" src="/static/images/tell.png"/><p class="tell">33333333</p><p class="time">周一至周日 9:00-18:00</p></li>
+					<li class="third"><img class="fl" src="/static/images/tell.png"/><p class="tell">18190982739</p><p class="time">周一至周日 9:00-18:00</p></li>
 				</ul>
 
 			</div>

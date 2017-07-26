@@ -16,7 +16,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from .views import OrgView,AddUserAskView,OrgHomeView,TestView,OrgCourseView,OrgDescView,OrgTeachersView
+from .views import OrgView,AddUserAskView,OrgHomeView,TestView,OrgCourseView,OrgDescView,OrgTeachersView,AddFavView
 urlpatterns = [
       url(r'^list.html/$', OrgView.as_view(), name='org_list'),
       url(r'^test.html/$', TestView.as_view(), name='test'),
@@ -25,4 +25,5 @@ urlpatterns = [
       url(r'^course.html/(?P<org_id>\d+)/$', OrgCourseView.as_view(), name='org_course'),
       url(r'^desc.html/(?P<org_id>\d+)/$', OrgDescView.as_view(), name='org_desc'),
       url(r'^teachers.html/(?P<org_id>\d+)/$', OrgTeachersView.as_view(), name='org_teachers'),
+      url(r'^add_fav/$', AddFavView.as_view(), name='org_add_fav'),
 ]
