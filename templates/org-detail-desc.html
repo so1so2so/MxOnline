@@ -1,0 +1,26 @@
+{% extends 'org_base.html' %}
+{% load staticfiles %}
+{% block org_taile %}
+机构详细信息
+{% endblock %}
+{% block org_name %}
+     <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}{{ course_org.image }}"/>
+      <div class="head fl">
+ <h1>
+   {{ course_org.name }}
+    <img src="{%  static 'images/authentication.png' %}"/>
+     <img src="{% static 'images/gold.png' %}"/>
+</h1>
+{% endblock %}
+{% block org_right %}
+<div class="right companycenter layout" >
+    <div class="head">
+        <h1>机构介绍</h1>
+    </div>
+        <p class="ue_t">
+            {{ course_org.detail }}
+        </p>
+        <p class="ue_t"><br/> </p><p><br/></p><p><br/></p>
+        <a href="/company/desc/22/">
+        <span class="green">[查看更多]</span></a></div>
+{% endblock %}
