@@ -16,8 +16,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from .views import CourseListView
+from .views import CourseListView,CourseDetaiView
 urlpatterns = [
       url(r'^list/$', CourseListView.as_view(), name='course_list'),
+      url(r'^detail/(?P<org_id>\d+)$', CourseDetaiView.as_view(), name='course_detail'),
 
 ]

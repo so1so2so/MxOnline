@@ -46,6 +46,7 @@ class OrgView(View):
             page = 1
         p = Paginator(all_orgs, 2, request=request)
         orgs = p.page(page)
+        a = request.path
         return render(request, 'org-list.html', {
             'all_orgs': orgs,
             'all_city': all_city,
@@ -53,7 +54,8 @@ class OrgView(View):
             'city_id': city_id,
             'category': category,
             'hot_orgs': hot_orgs,
-            'sort': sort
+            'sort': sort,
+            'a':a
         })
 
 
@@ -122,7 +124,6 @@ class OrgCourseView(View):
                 has_fav =True
         # 反向调用
         all_courses = course_org.course_set.all()
-
         return render(request, 'org-detail-course.html', {
             'all_courses': all_courses,
             'course_org': course_org,
@@ -133,7 +134,7 @@ class OrgCourseView(View):
 
 class OrgDescView(View):
     """
-    机构课程列表页
+    机构详情列表页
     """
 
     def get(self, request, org_id):
@@ -156,7 +157,7 @@ class OrgDescView(View):
 
 class OrgTeachersView(View):
     """
-    机构课程列表页
+    机构教师列表页
     """
 
     def get(self, request, org_id):

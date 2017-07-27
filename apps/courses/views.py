@@ -17,6 +17,20 @@ class CourseListView(View):
             page = 1
         p = Paginator(all_course, 6, request=request)
         orgs = p.page(page)
+        a = request.path
         return render(request, 'course-list.html',{
-            'all_course': orgs
+            'all_course': orgs,
+            'a':a
+        })
+
+
+class CourseDetaiView(View):
+    def get(self, request,org_id):
+        course = Course.objects.filter(id=int(org_id))
+        # print all_user
+        a = request.path
+        return render(request, 'course-detai.html',{
+            'all_course': course,
+            'a':a,
+            # 'all_user':all_user,
         })
