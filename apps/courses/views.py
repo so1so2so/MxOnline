@@ -6,7 +6,7 @@ from django.views.generic.base import View
 # 分页函数
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from .models import Course
-
+from operation.models import UserCourse
 
 class CourseListView(View):
     def get(self, request):
@@ -38,10 +38,12 @@ class CourseListView(View):
 class CourseDetaiView(View):
     def get(self, request,org_id):
         course = Course.objects.filter(id=int(org_id))
+        all_user = UserCourse.objects.filter(course=course)
+        user = all_user.userprofile_set.all()
         # print all_user
         a = request.path
         return render(request, 'course-detai.html',{
             'all_course': course,
             'a':a,
-            # 'all_user':all_user,
+            'all_user':all_user,
         })
