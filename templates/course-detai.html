@@ -5,7 +5,7 @@
         <div class="wp">
             <ul  class="crumbs">
                 <li><a href="{% url 'index' %}">首页</a>></li>
-                <li>公开课</li>
+                <li>>公开课></li>
                 <li>课程详情</li>
             </ul>
         </div>
@@ -34,9 +34,9 @@
 							<li><span class="pram word3">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><span>{{ rigth.learn_times }}</span></li>
                             <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>{{ rigth.get_zj_nums }}</span></li>
                             <li><span class="pram word3">课程类别：</span><span title="">{{ rigth.category }}</span></li>
-							<li class="piclist"><span class="pram word4">学习用户：{% for i in rigth.get_course_students  %}{{ i.user }}{% endfor %} </span>
+							<li class="piclist"><span class="pram word4">学习用户： </span>
 
-                                    <span class="pic"><img width="40" height="40" src=""></span>
+                                    <span class="pic"><img width="40" height="40" src="{% for i in rigth.get_course_students  %}{{ i.user.image }}{% endfor %}"></span>
 
 							</li>
 						</ul>

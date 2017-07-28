@@ -11,6 +11,14 @@ from .models import Course
 class CourseListView(View):
     def get(self, request):
         all_course = Course.objects.all()
+        # 课程排序
+        sort = request.GET.get('sort')
+        if sort:
+            if sort=='students':
+                all_course=all_course.order_by('-students')
+            elif sort == 'hot':
+                all_course=all_course.order_by('-click_nums')
+        hot_orgs = all_course.order_by("-click_nums")[:3]
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
@@ -20,7 +28,10 @@ class CourseListView(View):
         a = request.path
         return render(request, 'course-list.html',{
             'all_course': orgs,
-            'a':a
+            'a':a,
+            'sort':sort,
+            'hot_orgs':hot_orgs
+
         })
 
 

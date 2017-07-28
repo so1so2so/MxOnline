@@ -51,6 +51,7 @@ class Course(models.Model):
     def get_course_lesson(self):
         # 获取课程所有章节
         return self.lesson_set.all()
+
     def get_course_students(self):
         # 获取所有学生
         return self.usercourse_set.all()
