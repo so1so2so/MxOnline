@@ -15,15 +15,21 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
-from .views import OrgView,AddUserAskView,OrgHomeView,TestView,OrgCourseView,OrgDescView,OrgTeachersView,AddFavView
+from django.conf.urls import url, include
+from .views import OrgView, AddUserAskView, OrgHomeView, TestView, OrgCourseView, OrgDescView, OrgTeachersView, \
+    AddFavView, TeacherListView, TeacherDetailView
+
 urlpatterns = [
-      url(r'^list.html/$', OrgView.as_view(), name='org_list'),
-      url(r'^test.html/$', TestView.as_view(), name='test'),
-      url(r'^add.html/$', AddUserAskView.as_view(), name='add'),
-      url(r'^home.html/(?P<org_id>\d+)/$', OrgHomeView.as_view(), name='org_home'),
-      url(r'^course.html/(?P<org_id>\d+)/$', OrgCourseView.as_view(), name='org_course'),
-      url(r'^desc.html/(?P<org_id>\d+)/$', OrgDescView.as_view(), name='org_desc'),
-      url(r'^teachers.html/(?P<org_id>\d+)/$', OrgTeachersView.as_view(), name='org_teachers'),
-      url(r'^add_fav/$', AddFavView.as_view(), name='org_add_fav'),
+    url(r'^list.html/$', OrgView.as_view(), name='org_list'),
+    url(r'^test.html/$', TestView.as_view(), name='test'),
+    url(r'^add.html/$', AddUserAskView.as_view(), name='add'),
+    url(r'^home.html/(?P<org_id>\d+)/$', OrgHomeView.as_view(), name='org_home'),
+    url(r'^course.html/(?P<org_id>\d+)/$', OrgCourseView.as_view(), name='org_course'),
+    url(r'^desc.html/(?P<org_id>\d+)/$', OrgDescView.as_view(), name='org_desc'),
+    url(r'^teachers.html/(?P<org_id>\d+)/$', OrgTeachersView.as_view(), name='org_teachers'),
+    url(r'^add_fav/$', AddFavView.as_view(), name='org_add_fav'),
+    # 讲师列表页
+    url(r'^teacher/list/$', TeacherListView.as_view(), name='teacherlist'),
+    # 讲师详情页
+    url(r'^teacher/detail/(?P<teacher_id>\d+)/$', TeacherDetailView.as_view(), name="teacher_detail")
 ]

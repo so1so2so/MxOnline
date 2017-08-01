@@ -8,6 +8,7 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 from .models import Course,CourseResource
 from operation.models import UserFavorite
 from operation.models import UserCourse,CourseComments
+from myemail.mixin_utils import LoginRequiredMixin
 class CourseListView(View):
     def get(self, request):
         all_course = Course.objects.all().order_by("-add_time")
@@ -66,7 +67,7 @@ class CourseDetaiView(View):
         })
 
 
-class CourseInfoView(View):
+class CourseInfoView(LoginRequiredMixin,View):
     """
     课程章节信息
     """
@@ -83,10 +84,11 @@ class CourseInfoView(View):
         user_cousers = UserCourse.objects.filter(course=course)
         user_ids = [user_couser.user.id for user_couser in user_cousers]
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
-        #取出所有课程id
+        # 取出所有课程id
         course_ids = [user_couser.course.id for user_couser in all_user_courses]
-        #获取学过该用户学过其他的所有课程
-        relate_courses = Course.objects.filter(id__in=course_ids).order_by("-click_nums")[:5]
+        # 获取学过该用户学过其他的所有课程
+        relate_courses = Course.objects.filter(id__in=course_ids).order_by("-click_nums")[:2]
+        # 课程资源
         all_resources = CourseResource.objects.filter(course=course)
         return render(request, "course-video.html", {
             "course":course,
@@ -94,7 +96,8 @@ class CourseInfoView(View):
             "relate_courses":relate_courses
         })
 
-class CommentsView(View):
+
+class CommentsView(LoginRequiredMixin,View):
     def get(self, request, course_id):
         course = Course.objects.get(id=int(course_id))
         all_resources = CourseResource.objects.filter(course=course)
@@ -103,7 +106,6 @@ class CommentsView(View):
             "course":course,
             "course_resources":all_resources,
             "all_comments":all_comments
-
         })
 
 

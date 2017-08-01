@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}公开课视频信息 - 慕学在线网{% endblock %}
+{% block taile %}公开课视频信息 - 慕学在线网{% endblock %}
 {% load staticfiles %}
-{% block custom_bread %}
+{% block cus_bread %}
     <section>
 	<div class="wp">
 		<div class="crumbs">
 			<ul>
 				<li><a href="/">首页</a>></li>
-                <li><a href="{% url 'course:course_list' %}">公开课程</a>></li>
-				<li><a href="{% url 'course:course_detail' course.id %}">课程详情</a>></li>
+                <li><a href="{% url 'courses:course_list' %}">公开课程</a>></li>
+				<li><a href="{% url 'courses:course_detail' course.id %}">课程详情</a>></li>
                 <li>章节信息</li>
 			</ul>
 		</div>
@@ -16,7 +16,7 @@
 </section>
 {% endblock %}
 
-{% block custom_css %}
+{% block cus_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/base.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/common-less.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/course/learn-less.css' %}" />
@@ -60,8 +60,8 @@
             <div class="content">
                 <div class="mod-tab-menu">
                     <ul class="course-menu clearfix">
-                        <li><a class="ui-tabs-active active" id="learnOn"  href="{% url 'course:course_info' course.id %}"><span>章节</span></a></li>
-                        <li><a id="commentOn" class="" href="{% url 'course:course_comments' course.id %}"><span>评论</span></a></li>
+                        <li><a class="ui-tabs-active active" id="learnOn"  href="{% url 'courses:course_info' course.id %}"><span>章节</span></a></li>
+                        <li><a id="commentOn" class="" href="{% url 'courses:course_comments' course.id %}"><span>评论</span></a></li>
                     </ul>
                 </div>
                 <div id="notice" class="clearfix">
@@ -77,7 +77,7 @@
                         <ul class="video">
                             {% for video in lesson.get_lesson_video %}
                             <li>
-                                <a target="_blank" href='/video/3662' class="J-media-item studyvideo">{{ video.name }} ({{ video.learn_times }})
+                                <a target="_blank" href='{{ video.url }}' class="J-media-item studyvideo">{{ video.name }} ({{ video.learn_times }})
                                     <i class="study-state"></i>
                                 </a>
                             </li>
@@ -136,7 +136,7 @@
                                 <ul class="other-list">
                                     {% for relate_course in relate_courses %}
                                     <li class="curr">
-                                        <a href="{% url 'course:course_detail' relate_course.id %}" target="_blank">
+                                        <a href="{% url 'courses:course_detail' relate_course.id %}" target="_blank">
                                             <img src="{{ MEDIA_URL }}{{ relate_course.image }}" alt="{{ relate_course.name }}">
                                             <span class="name autowrap">{{ relate_course.name }}</span>
                                         </a>

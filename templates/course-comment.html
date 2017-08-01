@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}公开课评论 - 慕学在线网{% endblock %}
+{% block taile %}公开课评论 - 慕学在线网{% endblock %}
 {% load staticfiles %}
-{% block custom_bread %}
+{% block cus_bread %}
     <section>
 	<div class="wp">
 		<div class="crumbs">
@@ -16,7 +16,7 @@
 </section>
 {% endblock %}
 
-{% block custom_css %}
+{% block cus_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/course/learn-less.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'css/muke/course/course-comment.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/base.css' %}">
@@ -60,8 +60,8 @@
                 <div class="content">
                     <div class="mod-tab-menu">
                         <ul class="course-menu clearfix">
-                            <li><a class="ui-tabs-active " id="learnOn"  href="{% url 'course:course_info' course.id %}"><span>章节</span></a></li>
-                            <li><a id="commentOn" class="active" href="{% url 'course:course_comments' course.id %}"><span>评论</span></a></li>
+                            <li><a class="ui-tabs-active " id="learnOn"  href="{% url 'courses:course_info' course.id %}"><span>章节</span></a></li>
+                            <li><a id="commentOn" class="active" href="{% url 'courses:course_comments' course.id %}"><span>评论</span></a></li>
                         </ul>
                     </div>
 
@@ -208,7 +208,7 @@
         $.ajax({
             cache: false,
             type: "POST",
-            url:"{% url 'course:add_comment' %}",
+            url:"{% url 'courses:add_comment' %}",
             data:{'course_id':{{ course.id }}, 'comments':comments},
             async: true,
             beforeSend:function(xhr, settings){
@@ -216,7 +216,9 @@
             },
             success: function(data) {
                 if(data.status == 'fail'){
-                    if(data.msg == '用户未登录'){
+                    if(data.msg == '用户未登录')
+                    {
+                        alert('你还没有登录,点击确认跳转到登录页面')
                         window.location.href="/login/";
                     }else{
                         alert(data.msg)
